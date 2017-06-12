@@ -3,7 +3,7 @@ import wget
 import argparse
 import numpy as np
 import pandas as pd
-
+import save-download
 import pdb
 
 """ If there is no errors, this function will download and then save a csv file 
@@ -46,4 +46,5 @@ def downloadData(startYear, endYear, stationId, cityName):
         currPath = os.getcwd()
         filePath= (currPath+'/CSVData/'+cityName+'GDDData.csv')
         startYear += startYear
+        save-download(csvData, filePath)
         os.remove(fileName)
