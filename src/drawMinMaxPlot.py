@@ -13,7 +13,7 @@ def drawMinMaxPlot(mn, mx, cityName):
     plt.plot(max_space, mx, color="red", label="Max Temperature")
     plt.legend(loc='upper right')
     ax = plt.gca()
-    plt.title('Min and Max Temperatures in 2015 for ' + cityName, color="black", fontsize=14)  # *******
+    plt.title('GDD Plot ' + cityName, color="black", fontsize=14)  # *******
     ax.set_axis_bgcolor('yellow')
     ax.set_xlabel('Days', fontsize=11)
     ax.set_ylabel('Temperature', fontsize=11)
