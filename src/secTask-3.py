@@ -28,8 +28,11 @@ def Main():
 
         plt.plot(X, T_Base, c=c, label='T base = ' + str(list_t[i]))
     plt.legend(loc='upper right')
-    
+    ax = plt.gca()
 
+    ax.set_xlabel('MONTHS', fontsize=13)
+    ax.set_ylabel('GDD on different T bases (Cumulative)', fontsize=13)  # setting plot
+    plt.title("Growing Degree Days in St.John's (Accumulated)", fontsize=14)
     plt.savefig("./plots/secTask-3.png")
 
 
