@@ -3,13 +3,14 @@ import pandas as pd
 import numpy as np
 import pdb
 
-
+""" This function gets a path and reads the result in CSV
+"""
 
 def getCSVData(filePath):
     try:
         gddData = pd.read_csv(filePath, delimiter = ',' ,skiprows=0)
     except:
-        print("Oops! there is problem in reading data", gddData)
+        print("Oops! there is a problem in reading data", gddData)
 
     Data = pd.DataFrame(gddData)
     Data.replace('', np.nan, inplace = True)
@@ -28,5 +29,4 @@ def getCSVData(filePath):
 
 
 
-
-
+ 
