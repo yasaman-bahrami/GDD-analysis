@@ -5,9 +5,8 @@ import os
 from getCSVData import getCSVData
 import pdb
 
-'''producing GDD plots for cities'''
+
 def drawGDDPlot(gdd, cityName, gColor):
-    #pdb.set_trace()
     rowLen = len(gdd)
     gdd_space=np.linspace(1, 12,rowLen)
     plt.subplot(1, 1, 1)
@@ -21,7 +20,6 @@ def drawGDDPlot(gdd, cityName, gColor):
     return plt
     
 def Main():
-    # Taking the arguments from command line. 
     parser = argparse.ArgumentParser()
     parser.add_argument("-st", dest="stationId", nargs = '*', help="Please provide a list of station Id.")
     parser.add_argument("-ct", dest="cityName", nargs = '*', help="Please provide a list of city names corresponding to stations.")
