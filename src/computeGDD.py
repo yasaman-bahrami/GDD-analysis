@@ -18,7 +18,7 @@ def computeGDD(Data, baseTemp):  # Checking GDD values and Computing it.
         dataMax.append(item)
     for item in Data['Min Temp']:
         if item < baseTemp:
-            item = 10
+            item = baseTemp
         dataMin.append(item)
     Data['Max Temp'] = dataMax
     Data['Min Temp'] = dataMin
