@@ -5,8 +5,19 @@ import os
 from getCSVData import getCSVData
 import pdb
 
+'''producing GDD plots for cities'''
+
+def getGDDData(stationId,cityName):
+    cityData = []
+    for i in range(len(stationId)):
+        # Reading the data from downloaded .csv files.
+        FilePath = (os.getcwd() + '/CSVData/' + cityName[i] + 'GDDData.csv')
+        Data, Date, maxTemp, minTemp = getCSVData(FilePath)
+        cityData.append(Data['GDD'])
+    return cityData
 
 def drawGDDPlot(gdd, cityName, gColor):
+    #pdb.set_trace()
     rowLen = len(gdd)
     gdd_space=np.linspace(1, 12,rowLen)
     plt.subplot(1, 1, 1)
@@ -20,21 +31,14 @@ def drawGDDPlot(gdd, cityName, gColor):
     return plt
     
 def Main():
+    # Taking the arguments from command line. 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-st", dest="stationId", nargs = '*', help="Please provide a list of station Id.")
-    parser.add_argument("-ct", dest="cityName", nargs = '*', help="Please provide a list of city names corresponding to stations.")
-    parser.add_argument("-gc", dest="gColor", nargs = '*', help="Please provide the colors for each city graph.")
-	
+    parser.add_argument("-st", dest="stationId", nargs = '*')
+    parser.add_argument("-ct", dest="cityName", nargs = '*')
+    parser.add_argument("-gc", dest="gColor", nargs = '*')
     args = parser.parse_args()
-	
-    cityData = []
-    for i in range(len(args.stationId)):
-    	# Reading the data from downloaded .csv files. 
-        CurrentPath = os.getcwd()
-        FilePath= (CurrentPath+'/CSVData/'+args.cityName[i]+'GDDData.csv')
-        Data, Date, maxTemp, minTemp = getCSVData(FilePath)
-        cityData.append(Data['GDD'])
-    
+
+    cityData = getGDDData(args.stationId, args.cityName)
     for i in range(len(cityData)):
         gdd_plt = drawGDDPlot(cityData[i], args.cityName[i], args.gColor[i])
 		
