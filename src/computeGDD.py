@@ -30,6 +30,31 @@ def computeGDD(Data, baseTemp):  # Checking GDD values and Computing it.
     Data['GDD'] = GDD
     return Data
 
+def computeAcumulatedGDD(Data, baseTemp):  # Checking GDD values and Computing it.
+    key = 0
+    GDD = []
+    dataMax = []
+    dataMin = []
+    for item in Data['Max Temp']:
+        if item >30:
+            item = 30
+        dataMax.append(item)
+    for item in Data['Min Temp']:
+        if item < baseTemp:
+            item = baseTemp
+        dataMin.append(item)
+    Data['Max Temp'] = dataMax
+    Data['Min Temp'] = dataMin
+    Data['GDD'] = ((Data['Max Temp'] + Data['Min Temp']) / 2) - baseTemp
+    for item in Data['GDD']:
+        if item >= 0:
+            key += item
+        GDD.append(key)
+    Data['GDD'] = GDD
+    if len(GDD)>0:
+        return GDD[-1]
+    return 0
+
 def readCleanCSV(cityName):
     filePath = os.getcwd() + '/CSVData/' + cityName + 'GDDData.csv'
     csvData = pd.read_csv(filePath, delimiter=',', skiprows=0)
@@ -37,6 +62,27 @@ def readCleanCSV(cityName):
     df.replace('', np.nan, inplace=True)
     df = df.dropna()
     return df,filePath
+
+def readRawCSV(cityName, stationId):
+    filePath = os.getcwd() + '/CSVData/' + cityName + '_' + str(stationId) + '_TempData.csv'
+    csvData = pd.read_csv(filePath, delimiter=',', skiprows=0)
+    df = pd.DataFrame(csvData, columns=['Date/Time', 'Max Temp', 'Min Temp'])
+    df.replace('', np.nan, inplace=True)
+    df = df.dropna()
+    return df,filePath
+
+def computeGDDFile(cityName, stationId, baseTemp):
+#    print ('computing ' + cityName)
+    df,filePath = readRawCSV(cityName, stationId)
+    GDDData = computeGDD(df, baseTemp)  # Calculate GDD
+    filePath=filePath.replace('Temp','GDD')
+    saveCSVData(GDDData, filePath) # Save GDD data
+    return
+
+def computeGDDAccumulatedFile(cityName, stationId, baseTemp):
+#    print ('computing ' + cityName)
+    df,filePath = readRawCSV(cityName, stationId)
+    return computeAcumulatedGDD(df, baseTemp)
 
 def Main():
     parser=argparse.ArgumentParser()
