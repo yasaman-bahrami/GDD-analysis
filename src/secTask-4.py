@@ -2,6 +2,7 @@ import pandas
 import os
 import argparse
 import pdb
+
 from bokeh.embed import components
 from bokeh.palettes import Spectral11
 from bokeh.plotting import Figure, output_file, save
@@ -17,22 +18,25 @@ def cityPlot(cityInfo):
         tooltips=[
             ("GDD", "$y"),
             ("Date", "@dateStr")
-        ]
+        ],
+        mode='vline'
     )
     TOOLS = [BoxSelectTool(), hover]
-    plot = Figure(x_axis_type="datetime", plot_width=1000, tools=TOOLS, title="(Accumulated) GDD - CANADA")
+    plot = Figure(x_axis_type="datetime", plot_width=700, tools=TOOLS, title="(Accumulated) GDD - CANADA")
     colors = Spectral11[0:len(cityInfo)]
     key = 0
     for src in cityInfo:
         plot.line(x='date', y='GDD', source=cityInfo[src], color=colors[key], line_width=4, legend=src)
-        key += key
+        key += 1
     plot.xaxis.axis_label = "MONTHS"
     plot.yaxis.axis_label = "GDD (Accumulated)"
     plot.grid.grid_line_alpha = 0.3
     plot.grid[0].ticker.desired_num_ticks = 12
     return plot
 
+
 ''' reading data from file'''
+
 
 def Main():
     parser = argparse.ArgumentParser()
