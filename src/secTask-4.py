@@ -10,19 +10,16 @@ from bokeh.models import ColumnDataSource, HoverTool, BoxSelectTool
 from getCSVData import getCSVData
 
 '''Parse .csv files and process according to the plot requirements'''
-
-
 def cityPlot(cityInfo):
     ''' producing interactive plot '''
     hover = HoverTool(
         tooltips=[
             ("GDD", "$y"),
-            ("Date", "@dateStr")
-        ],
-        mode='vline'
+            ("Date", "@dateStr")            
+        ]
     )
     TOOLS = [BoxSelectTool(), hover]
-    plot = Figure(x_axis_type="datetime", plot_width=700, tools=TOOLS, title="(Accumulated) GDD - CANADA")
+    plot = Figure(x_axis_type="datetime", plot_width=1000, tools=TOOLS, title="(Accumulated) GDD - CANADA")
     colors = Spectral11[0:len(cityInfo)]
     key = 0
     for src in cityInfo:
@@ -36,19 +33,17 @@ def cityPlot(cityInfo):
 
 
 ''' reading data from file'''
-
-
 def Main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-st", dest="stationId", nargs='*')
-    parser.add_argument("-ct", dest="cityName", nargs='*')
+    parser.add_argument("-st", dest="stationId", nargs = '*')
+    parser.add_argument("-ct", dest="cityName", nargs = '*')
     args = parser.parse_args()
-
+	
     cityData = {}
-    cities = {
-        args.cityName[0]: {'ID': args.stationId[0]},
-        args.cityName[1]: {'ID': args.stationId[1]},
-        args.cityName[2]: {'ID': args.stationId[2]}
+    cities = { 
+        args.cityName[0] : {'ID':args.stationId[0]},
+        args.cityName[1] : {'ID':args.stationId[1]},
+        args.cityName[2] : {'ID':args.stationId[2]}
     }
 
     for city in cities.keys():
@@ -80,9 +75,9 @@ def Main():
     fs.write(scr)
     fd = open("./plots/secTask-4.div", 'w')
     fd.write(div)
-    print(div)
-
-
+    print(div) 
+	
 if __name__ == '__main__':
     Main()
+
 
