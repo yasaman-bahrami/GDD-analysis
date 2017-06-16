@@ -36,6 +36,7 @@ def Main():
     parser = argparse.ArgumentParser()     # checking
     parser.add_argument("-st", dest="stationId", nargs = '*')
     parser.add_argument("-ct", dest="cityName", nargs = '*')
+    parser.add_argument("-dmm", dest="dmmColor", nargs = '*')
     args = parser.parse_args()
     savePlot(args.stationId, args.cityName)
 
