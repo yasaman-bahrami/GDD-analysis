@@ -25,15 +25,15 @@ $(d)St_JohnsGDDData.csv : $(s)downloadData.py $(s)computeGDD.py
 	python $(s)downloadData.py $(startYear) $(endYear) $(stationId) $(cityName)
 	python $(s)computeGDD.py $(baseTemp) $(stationId) $(cityName)
 	
-$(d)MontrealGDDData.csv : $(s)downloadData.py $(s)computeGDD.py
+$(d)VancouverGDDData.csv : $(s)downloadData.py $(s)computeGDD.py
 	python $(s)downloadData.py $(startYear) $(endYear) $(stationId) $(cityName)
 	python $(s)computeGDD.py $(baseTemp) $(stationId) $(cityName)
 
-$(d)CalgaryGDDData.csv : $(s)downloadData.py $(s)computeGDD.py
+$(d)TorontoGDDData.csv : $(s)downloadData.py $(s)computeGDD.py
 	python $(s)downloadData.py $(startYear) $(endYear) $(stationId) $(cityName)
 	python $(s)computeGDD.py $(baseTemp) $(stationId) $(cityName)
 	
-$(p)GDDPlotIMG.png : $(s)getCSVData.py $(s)drawGDDPlot.py $(d)St_JohnsGDDData.csv $(d)MontrealGDDData.csv $(d)CalgaryGDDData.csv
+$(p)GDDPlotIMG.png : $(s)getCSVData.py $(s)drawGDDPlot.py $(d)St_JohnsGDDData.csv $(d)VancouverGDDData.csv $(d)TorontoGDDData.csv
 	mkdir -p plots
 	python $(s)drawGDDPlot.py $(stationId) $(cityName) $(gColor)
 	
@@ -41,11 +41,11 @@ $(p)minMaxPlotSt_Johns.png : $(s)getCSVData.py $(s)drawMinMaxPlot.py $(d)St_John
 	mkdir -p plots
 	python $(s)drawMinMaxPlot.py $(stationId) $(cityName) $(dmmColor)
 	
-$(p)minMaxPlotMontreal.png : $(s)getCSVData.py $(s)drawMinMaxPlot.py $(d)MontrealGDDData.csv
+$(p)minMaxPlotVancouver.png : $(s)getCSVData.py $(s)drawMinMaxPlot.py $(d)VancouverGDDData.csv
 	mkdir -p plots
 	python $(s)drawMinMaxPlot.py $(stationId) $(cityName) $(dmmColor)
 
-$(p)minMaxPlotCalgary.png : $(s)getCSVData.py $(s)drawMinMaxPlot.py $(d)CalgaryGDDData.csv
+$(p)minMaxPlotToronto.png : $(s)getCSVData.py $(s)drawMinMaxPlot.py $(d)TorontoGDDData.csv
 	mkdir -p plots
 	python $(s)drawMinMaxPlot.py $(stationId) $(cityName) $(dmmColor)
 
@@ -53,23 +53,23 @@ $(p)secTask-1St_Johns.html : $(s)getCSVData.py $(s)secTask-1.py $(d)St_JohnsGDDD
 	mkdir -p plots
 	python $(s)secTask-1.py $(stationId) $(cityName) $(percentage) $(taskColor1)
 	
-$(p)secTask-1Montreal.html : $(s)getCSVData.py $(s)secTask-1.py $(d)MontrealGDDData.csv
+$(p)secTask-1Vancouver.html : $(s)getCSVData.py $(s)secTask-1.py $(d)VancouverGDDData.csv
 	mkdir -p plots
 	python $(s)secTask-1.py $(stationId) $(cityName) $(percentage) $(taskColor1)
 	
-$(p)secTask-1Calgary.html : $(s)getCSVData.py $(s)secTask-1.py $(d)CalgaryGDDData.csv
+$(p)secTask-1Toronto.html : $(s)getCSVData.py $(s)secTask-1.py $(d)TorontoGDDData.csv
 	mkdir -p plots
 	python $(s)secTask-1.py $(stationId) $(cityName) $(percentage) $(taskColor1)
 
-$(p)secTask-3.png : $(s)getCSVData.py $(s)secTask-3.py $(d)CalgaryGDDData.csv $(d)MontrealGDDData.csv $(d)St_JohnsGDDData.csv
+$(p)secTask-3.png : $(s)getCSVData.py $(s)secTask-3.py $(d)TorontoGDDData.csv $(d)VancouverGDDData.csv $(d)St_JohnsGDDData.csv
 	mkdir -p plots
 	python $(s)secTask-3.py $(tempList)
 
-$(p)secTask-4.html : $(s)getCSVData.py $(s)secTask-4.py $(d)CalgaryGDDData.csv $(d)MontrealGDDData.csv $(d)St_JohnsGDDData.csv
+$(p)secTask-4.html : $(s)getCSVData.py $(s)secTask-4.py $(d)TorontoGDDData.csv $(d)VancouverGDDData.csv $(d)St_JohnsGDDData.csv
 	mkdir -p plots
 	python $(s)secTask-4.py $(stationId) $(cityName)
 
-$(p)secTask-5.html : $(s)getCSVData.py $(s)secTask-5.py $(d)CalgaryGDDData.csv $(d)MontrealGDDData.csv $(d)St_JohnsGDDData.csv
+$(p)secTask-5.html : $(s)getCSVData.py $(s)secTask-5.py $(d)TorontoGDDData.csv $(d)VancouverGDDData.csv $(d)St_JohnsGDDData.csv
 	mkdir -p plots
 	#bokeh serve $(s)secTask-5.py
 	python $(s)secTask-5.py $(stationId) $(cityName)
@@ -78,11 +78,11 @@ $(p)finalTaskSt_Johns.png : $(s)finalTask.py
 	mkdir -p plots
 	python $(s)finalTask.py $(stationId) $(cityName)
 
-$(p)finalTaskMontreal.png : $(s)finalTask.py
+$(p)finalTaskVancouver.png : $(s)finalTask.py
 	mkdir -p plots
 	python $(s)finalTask.py $(stationId) $(cityName)
 	
-$(p)finalTaskCalgary.png : $(s)finalTask.py
+$(p)finalTaskToronto.png : $(s)finalTask.py
 	mkdir -p plots
 	python $(s)finalTask.py $(stationId) $(cityName)
 
@@ -91,7 +91,7 @@ testSuite : $(t)*.py
 	python $(t)testDownloadData.py
 	python $(t)testGetCSVData.py
 	
-report.pdf : $(r)report.tex $(p)GDDPlotIMG.png $(p)minMaxPlotSt_Johns.png $(p)minMaxPlotMontreal.png $(p)minMaxPlotCalgary.png $(p)secTask-1St_Johns.html $(p)secTask-1Montreal.html $(p)secTask-1Calgary.html $(p)secTask-3.png $(p)secTask-4.html $(p)secTask-5.html $(p)finalTaskSt_Johns.png $(p)finalTaskMontreal.png $(p)finalTaskCalgary.png
+report.pdf : $(r)report.tex  $(p)GDDPlotIMG.png $(p)minMaxPlotSt_Johns.png $(p)minMaxPlotVancouver.png $(p)minMaxPlotToronto.png $(p)secTask-1St_Johns.html $(p)secTask-1Vancouver.html $(p)secTask-1Toronto.html $(p)secTask-3.png $(p)secTask-4.html $(p)secTask-5.html $(p)finalTaskSt_Johns.png $(p)finalTaskVancouver.png $(p)finalTaskToronto.png
 	pdflatex $(r)report.tex
 	pdflatex $(r)report.tex
 	rm -f report.log report.aux report.toc report.out
