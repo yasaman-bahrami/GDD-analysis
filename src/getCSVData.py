@@ -17,7 +17,3 @@ def getCSVData(filePath):
     gddData = pd.read_csv(filePath, delimiter = ',' ,skiprows=0)
     Data, Date, maxTemp, minTemp = cleanCSV(gddData)
     return Data, Date, maxTemp, minTemp
-
-
-
- 

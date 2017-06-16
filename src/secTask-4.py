@@ -18,11 +18,10 @@ def cityPlot(cityInfo):
         tooltips=[
             ("GDD", "$y"),
             ("Date", "@dateStr")
-        ],
-        mode='vline'
+        ]
     )
     TOOLS = [BoxSelectTool(), hover]
-    plot = Figure(x_axis_type="datetime", plot_width=700, tools=TOOLS, title="(Accumulated) GDD - CANADA")
+    plot = Figure(x_axis_type="datetime", plot_width=1000, tools=TOOLS, title="(Accumulated) GDD - CANADA")
     colors = Spectral11[0:len(cityInfo)]
     key = 0
     for src in cityInfo:
@@ -52,7 +51,7 @@ def Main():
     }
 
     for city in cities.keys():
-        FilePath = ('./CSVData/' + city + 'GDDData.csv')
+        FilePath = ('../CSVData/' + city + 'GDDData.csv')
         Data, Date, MaxTemp, MinTemp = getCSVData(FilePath)
         Data['date'] = pandas.to_datetime(Date)
         Data['max'] = MaxTemp
@@ -73,12 +72,12 @@ def Main():
         cityData[city] = ColumnDataSource(data=Data)
 
     plot = cityPlot(cityData)
-    output_file("./plots/secTask-4.html", title="Secondary Task 4")
+    output_file("../plots/secTask-4.html", title="Secondary Task 4")
     save(plot)
     scr, div = components(plot)
-    fs = open("./plots/secTask-4.scr", 'w')
+    fs = open("../plots/secTask-4.scr", 'w')
     fs.write(scr)
-    fd = open("./plots/secTask-4.div", 'w')
+    fd = open("../plots/secTask-4.div", 'w')
     fd.write(div)
     print(div)
 
