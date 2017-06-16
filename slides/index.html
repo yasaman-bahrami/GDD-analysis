@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GDD web-based presentation</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .imgGDD{max-width: 600px;}
+      .myownstyles {background-color: #EEE}
+      .red {color: red;}
+      .bold {font-weight: bold;}
+      .footnote {font-size: 0.7em; color: gray;}
+      .slide-background {background-color: #ADD8E6; }
+      .credits {font-size: 0.9em; color: #01153E;}
+      .yellow {color: #01153E;}
+      .gray {color: gray;}
+      .italic {font-style: italic;}
+      .magnet {color: #000000;}
+      .medium {font-size:x-large;}
+      .imgframe {border:1px solid #01153E; border-radius: 5px; max-height: 500px;max-width: 700px}
+      .small {font-size: 0.7em; }
+      .center {float: center;}
+      .bokehframe {border-radius: 5px; border:1px solid #021a40;  max-height: 500px;max-width: 700px}
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="default.min.css">
+    <script type="text/javascript" src="highlight.min.js"></script>
+    <!-- Enabling bokeh content loading -->
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.11.1.min.css" type="text/css" />  
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>    
+    <script> 
+      $(function(){
+        $("#bokehcontent").load("secTask-4.html")
+      });
+      $(function(){
+        $("#bokehcontent2").load("secTask-5St_Johns.html")
+      });
+      $(function(){
+        $("#bokehcontent3").load("secTask-1St_Johns.html")
+      });
+      $(function(){
+        $("#bokehcontent4").load("secTask-1Toronto.html")
+      });
+      $(function(){
+        $("#bokehcontent5").load("secTask-1Vancouver.html")
+      });
+    </script>
+    
+
+  </head>
+  <body>
+    <textarea id="source">
+name: GDD
+class: center, middle, slide-background, yellow
+
+# {{ name }} web-based presentation
+
+<br><br><br> <br><br><br> 
+Created by
+
+.credits[Yasaman] .gray[,] .credits[Majid] .gray[,] .credits[Hoda] .gray[,] .credits[Frieda] .gray[,] .credits[Aziz] .gray[&amp;] .credits[Harris]
+
+---
+
+# Introduction
+.medium[
+This is the web-based presentation of Growing degree-day (GDD) for three cities .gray.italic[St. Johns], .gray.italic[Vancouver] and .gray.italic[Toronto].
+
+<img class="imgGDD" src="gddPic.jpg" alt="St. Jonh's Plot">
+]
+
+---
+
+# Project structure
+
+```bash
+GDD-analysis
+|-- csvData #(Including all the data files)
+|   |-- St_Johns GDD Data
+|   |-- Vancouver GDD Data
+|   |-- Toronto GDD Data
+|-- reports
+|   |   |-- All data which are needed for making latex
+|-- plots #(Including all the result or plot files)
+|   |   |--Included all plots
+|-- slides
+|   |-- presentation.html
+|-- src #(Included all the source codes)
+|   |-- testSuite
+|   |-- All source codes
+|-- Makefile
+|-- ReadME.md
+```
+
+---
+class: center, middle, slide-background, yellow
+# Hoda Rafieipour
+.magnet[Accumulated GDD vs Time for selected cities]
+
+---
+<div class="bokehframe" id="bokehcontent"></div>
+.gray.small.center[Accumulated GDD vs Time for selected cities]
+
+---
+class: center, middle, slide-background, yellow
+# Majid Beheshti
+.magnet[Min/Max Plot &  Final Task]
+
+---
+
+## Plot of min/max tempretures St. John's 2016
+.center[
+<img class="imgframe" src="../plots/minMaxPlotSt_Johns.png" alt="St. Jonh's Plot">
+]
+.gray.small.center[Plot of min/max tempretures St. John's 2016]
+
+---
+## Plot of min/max tempretures Toronto 2016
+.center[
+<img class="imgframe" src="../plots/minMaxPlotToronto.png" alt="Toronto 2016">
+]
+.gray.small.center[Plot of min/max tempretures Toronto 2016]
+
+---
+## Plot of min/max tempretures Vancouver 2016
+.center[
+<img class="imgframe" src="../plots/minMaxPlotVancouver.png" alt="Vancouver 2016">
+]
+.gray.small.center[Plot of min/max tempretures Vancouver 2016]
+
+---
+## Showing Mean Temp and Total precip based on GDD- St John's
+.center[
+<img class="imgframe" src="../reports/finalTaskSt_Johns.png" alt="final task St John's">
+]
+.gray.small.center[Accumulate GDD for 2014 and 2015]
+---
+## Showing Mean Temp and Total precip based on GDD- Toronto
+.center[
+<img class="imgframe" src="../reports/finalTaskToronto.png" alt="final task Toronto">
+]
+.gray.small.center[Accumulate GDD for 2014 and 2015]
+---
+## Showing Mean Temp and Total precip based on GDD- Vancouver
+.center[
+<img class="imgframe" src="../reports/finalTaskVancouver.png" alt="final task Vancouver">
+]
+.gray.small.center[Showing Mean Temp and Total precip based on GDD- Vancouver]
+---
+class: center, middle, slide-background, yellow
+# Harris Tanvir
+.magnet[GDD Plot]
+
+---
+## Accumulated GDD vs Time for 2016
+.center[
+<img class="imgframe" src="../plots/GDDPlotIMG.png" alt="GDD Plot">
+]
+.gray.small.center[Accumulated GDD vs Time for 2016]
+
+---
+class: center, middle, slide-background, yellow
+# Frieda Musa
+.magnet[2016 Daily Growing Degree Days]
+
+---
+<div class="bokehframe" id="bokehcontent3"></div>
+.gray.small.center[2016 Daily Growing Degree Days]
+
+---
+<div class="bokehframe" id="bokehcontent4"></div>
+.gray.small.center[2016 Daily Growing Degree Days]
+
+---
+<div class="bokehframe" id="bokehcontent5"></div>
+.gray.small.center[2016 Daily Growing Degree Days]
+
+---
+class: center, middle, slide-background, yellow
+# Aziz Abu Saleh
+.magnet[Explore GDD calculation depending on T_base]
+
+---
+## Explore GDD calculation depending on T_base
+.center[
+<img class="imgframe" src="../plots/secTask-3.png" alt="Task-3">
+]
+.gray.small.center[Explore GDD calculation depending on T_base]
+
+---
+
+class: center, middle, slide-background, yellow
+# Yasaman
+.magnet[Bokeh plots for accumulated GDD for any city(St John's)]
+
+---
+
+
+<div class="bokehframe" id="bokehcontent2"></div>
+.gray.small.center[Bokeh plot for accumulated GDD for any city(St John's)]
+
+---
+
+class: center, middle,
+# The End
+For more information and exploring the source code go to the [github](https://github.com/yasaman-bahrami/GDD-analysis) page.
+
+    </textarea>
+    <!-- in case if wanted to use offline. -->
+    <script src="remark-latest.min.js"> </script>
+    
+    <!--
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+     -->
+     
+    <script>
+      var slideshow = remark.create({
+        highlightLanguage: 'python',
+        highlightStyle: 'github',
+        highlightSpans: true
+      });
+    </script>
+  </body>
+</html>
